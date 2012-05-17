@@ -25,7 +25,7 @@ $(document).ready ->
     content = photo_div.find(".content")
     content.fadeOut 200, ->
       photo_div.find("h2[rel='photo_title']").html(photo.name)
-      photo_div.find("h3[rel='user']").text(photo.user)
+      photo_div.find("span[rel='user']").text(photo.user)
       photo_div.find("img[rel='user_pic']").attr("src",photo.user_pic)
       photo_div.find("img[rel='image']").attr("src",photo.url)
       content.fadeIn(300)

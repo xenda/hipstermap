@@ -53,20 +53,35 @@ div#selected_photo {
 
 }
 
+#main {
+  overflow: hidden;
+  height: 450px;
+}
 
 #selected_photo h3 {
 	font-style: italic;
 	color: #acacac;
 	text-align: left;
 	margin-bottom: 20px;
+  margin-top: 5px;
 	font-weight: lighter;
 }
 
 #selected_photo img[rel="image"] {
 	padding: 2px;
-	background-color: #fffeff;
-	height: 350px;
+	/*background-color: #fffeff;*/
+	height: 352px;
+  width: 352px;
 }
+
+#selected_photo img[rel="user_pic"] {
+  padding: 2px;
+  background-color: #fffeff;
+  height: 16px;
+  width: 16px;
+  float: right;
+}
+
 
 .wrapper {
 	width: 920px;
@@ -76,7 +91,7 @@ div#selected_photo {
 }
 
 #map{
-  height:476px;
+  height:450px;
   background:#6699cc;
   float: left;
   width: 452px;
