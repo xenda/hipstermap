@@ -57,7 +57,7 @@ div#selected_photo {
 #selected_photo h3 {
 	font-style: italic;
 	color: #acacac;
-	text-align: right;
+	text-align: left;
 	margin-bottom: 20px;
 	font-weight: lighter;
 }

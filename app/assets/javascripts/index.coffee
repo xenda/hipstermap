@@ -35,4 +35,4 @@ $(document).ready ->
       photo.find("h3[rel='user']").text(user)
       photo.find("img[rel='user_pic']").attr("src",user_pic)
       photo.find("img[rel='image']").attr("src",url)
-      setTimeout("content.fadeIn(500)", 1500)
+      content.fadeIn(500)
