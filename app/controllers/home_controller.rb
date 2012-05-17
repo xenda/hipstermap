@@ -1,7 +1,11 @@
 class HomeController < ApplicationController
   
   def index
-    @initial = REDIS.zrevrange("instagram-photo-colection", 0, 10)
+    data = REDIS.zrevrange("instagram-photo-colection", 0, 10)
+    logger.info data.size
+    logger.info data[0]
+    logger.info data[1]
+    @photos = data.map {|a| JSON.parse(a) }
   end
 
   def callback
@@ -16,7 +20,7 @@ class HomeController < ApplicationController
 
     photos_data = clean_photos(photos)
 
-    REDIS.zadd("instagram-photo-colection",0,photos_data)
+    REDIS.zadd("instagram-photo-colection",0,photos_data.to_json)
     Pusher['hipstermap'].trigger('photo:new', photos_data.to_json)
     render :text => params["hub.challenge"], :status => 202
   end
