@@ -28,6 +28,9 @@ $(document).ready ->
 
     show_photo = (url, name, user, user_pic) ->
       photo = $("#selected_photo")
+      content = photo.find(".content")
+      content.fadeOut(500)
+      setTimeout(1500, "content.fadeIn(500)")
       photo.find("h2[rel='photo_title']").html(name)
       photo.find("h3[rel='user']").text(user)
       photo.find("img[rel='user_pic']").attr("src",user_pic)
