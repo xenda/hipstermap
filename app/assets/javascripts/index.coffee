@@ -29,5 +29,6 @@ $(document).ready ->
     show_photo = (url, name, user, user_pic) ->
       photo = $("#selected_photo")
       photo.find("h2[rel='photo_title']").html(name)
-      photo.find("h3[rel='user']").html(user)
-      photo.find("img[rel='image']").attr(src,url)
+      photo.find("h3[rel='user']").text(user)
+      photo.find("img[rel='user_pic']").attr("src",user_pic)
+      photo.find("img[rel='image']").attr("src",url)

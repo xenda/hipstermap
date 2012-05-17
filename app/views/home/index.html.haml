@@ -1,12 +1,13 @@
-%h1 HipsterMap
 .wrapper
-  #map
-  #sidebar
-    #selected_photo
-      %h2{:rel => "photo_title"} Título
-      %h3{:rel => "user"}
-        Usuario
-        = link_to "http://google.com"
-      %img{:src =>"", :rel => "image"}
+  %h1 HipsterMap
+  #main
+    #map
+    #sidebar
+      #selected_photo
+        %h2{:rel => "photo_title"} Título
+        %h3{:rel => "user"}
+          Text
+          %img{:src => "", :rel => "user_pic"}
+        %img{:src =>"", :rel => "image"}
 
 %footer

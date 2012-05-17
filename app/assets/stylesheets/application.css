@@ -1,3 +1,5 @@
+/* @override http://localhost:3000/assets/application.css?body=1 */
+
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -12,8 +14,68 @@
  *= require_tree .
 */
 
+body {
+	background-image: url('/assets/background_wood.jpg');
+	font-family: Arial, Helvetica, Geneva, sans-serif;
+}
+
+h1 {
+	text-align: left;
+	font-size: 50px;
+	color: rgba(255,255,255,0.45);
+    padding-top: 35px;
+    letter-spacing: -0.056em;
+    line-height:1.078em;
+    text-align: -moz-left;    
+    font-family:century gothic, arial black, helvetica, sans serif;
+    margin-top: 0px;
+    font-weight:bold;  
+}
+
+div#selected_photo {
+	float: left;
+	padding: 20px;	
+	margin-left: 00px;
+	background-color: rgba(19,19,19,0.89);
+	width: 360px;
+}
+
+#selected_photo h2,
+#selected_photo h3 {
+	margin: 0px;	
+	  letter-spacing: -0.056em;
+    line-height:1.078em;
+    text-align: -moz-left;    
+    font-family:century gothic, arial black, helvetica, sans serif;
+    margin-top: 0px;
+    font-weight:bold;
+	color: #f9f9f9;
+}
+
+
+#selected_photo h3 {
+	font-style: italic;
+	color: #acacac;
+	text-align: right;
+	margin-bottom: 20px;
+}
+
+#selected_photo img[rel="image"] {
+	padding: 2px;
+	background-color: #fffeff;
+	height: 350px;
+}
+
+.wrapper {
+	width: 920px;
+	margin: 0px auto;
+	height: auto;
+	overflow: auto;
+}
 
 #map{
-  height:300px;
+  height:476px;
   background:#6699cc;
+  float: left;
+  width: 500px;
 }
