@@ -7,7 +7,13 @@ class HomeController < ApplicationController
     Pusher.app_id = '20630'
     Pusher.key = 'c2663d1b5ca365fc8c20'
     Pusher.secret = '8cbbe7346e887830f9c7'
-    Pusher['hipstermap'].trigger('photo:new', request.body)
+
+    results = JSON.parse(params["_json"])
+    photos = results.map do |result|
+              Instagram.geography_recent_media(result["object_id"])
+             end
+
+    Pusher['hipstermap'].trigger('photo:new', photos.to_json)
     render :text => params["hub.challenge"], :status => 202
   end
 
