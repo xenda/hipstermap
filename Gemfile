@@ -41,3 +41,7 @@ gem "haml", ">= 3.0.0"
 gem "haml-rails"
 gem "jquery-rails"
 gem "redis"
+gem 'faraday', '0.7.6'
+gem 'instagram', :git => 'git://github.com/Instagram/instagram-ruby-gem.git'
+gem 'gmapsjs'
+gem 'pusher'

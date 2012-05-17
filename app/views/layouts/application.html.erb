@@ -3,12 +3,22 @@
 <head>
   <title>Hipstermap</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
 <%= yield %>
 
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+<script src="http://js.pusher.com/1.12/pusher.min.js"></script>
+  <%= javascript_include_tag "application" %>
+
+<script type="text/javascript">
+  var pusher = new Pusher('c2663d1b5ca365fc8c20'); // Replace with your app key
+  var channel = pusher.subscribe('hipstermap');
+  channel.bind('photo:new', function(data) {
+    console.log('An event was triggered with message: ' + data.message);
+  });
+</script>
 </body>
 </html>

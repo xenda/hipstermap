@@ -1,4 +1,8 @@
 Hipstermap::Application.routes.draw do
+  resources :photos
+  match "/callback" => "home#callback"
+
+  root :to => "home#index"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
