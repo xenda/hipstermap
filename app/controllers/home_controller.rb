@@ -13,6 +13,7 @@ class HomeController < ApplicationController
               Instagram.geography_recent_media(result["object_id"])
              end
 
+    Redis.sadd("instagram-photos",photos)
     Pusher['hipstermap'].trigger('photo:new', photos.to_json)
     render :text => params["hub.challenge"], :status => 202
   end
