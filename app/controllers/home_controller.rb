@@ -8,7 +8,7 @@ class HomeController < ApplicationController
     Pusher.key = 'c2663d1b5ca365fc8c20'
     Pusher.secret = '8cbbe7346e887830f9c7'
 
-    results = JSON.parse(params["_json"])
+    results = params["_json"]
     photos = results.map do |result|
               Instagram.geography_recent_media(result["object_id"])
              end
