@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
   
   def index
+    @initial = Instagram.geography_recent_media()
   end
 
   def callback
