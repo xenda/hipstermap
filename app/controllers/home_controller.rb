@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   
   def index
-    #@initial = Instagram.geography_recent_media(123)
+    @initial = REDIS.zrevrange("instagram-photos", 0, 10)
   end
 
   def callback
@@ -14,9 +14,27 @@ class HomeController < ApplicationController
               Instagram.geography_recent_media(result["object_id"])
              end
 
-    REDIS.sadd("instagram-photos",photos)
+    photos_data = clean_photos(photos)
+
+    REDIS.zadd("instagram-photos",0,photos_data)
     Pusher['hipstermap'].trigger('photo:new', photos.to_json)
     render :text => params["hub.challenge"], :status => 202
+  end
+
+  def clean_photos(photos)
+    data = photos[0]
+    data.map {|photo|
+      {
+        :url => photo["images"]["standard_resolution"]["url"],
+        :name => (photo["caption"] ? photo["caption"]["text"] : "" ),
+        :user => photo["user"]["full_name"],
+        :user_pic => photo["user"]["profile_picture"],
+        :latitude => photo["location"]["latitude"],
+        :longitude => photo["location"]["longitude"],
+        :link => photo["link"],
+        :created_at => photo["created_time"]
+      }
+    }
   end
 
 end

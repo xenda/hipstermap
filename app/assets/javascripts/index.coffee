@@ -8,31 +8,24 @@ $(document).ready ->
   pusher = new Pusher('c2663d1b5ca365fc8c20')
   channel = pusher.subscribe('hipstermap')
   channel.bind 'photo:new', (data)->
-    photos = data[0]
-    process photo for photo in photos
+    process photo for photo in data
 
   process = (photo) ->
-    url = photo.images.standard_resolution.url
-    name = photo.caption.text if photo.caption
-    user = photo.caption.from.full_name
-    user_pic = photo.caption.from.profile_picture
-    latitude = photo.location.latitude
-    longitude = photo.location.longitude
-    console.log('An event was triggered with message: ' + url);
+    console.log('An event was triggered with message: ' + photo.url);
     map.addMarker
-      lat: latitude
-      lng: longitude
+      lat: photo.latitude
+      lng: photo.longitude
       click: (e) ->
-        show_photo(url,name,user,user_pic)
-    map.setCenter(latitude, longitude)
-    show_photo(url, name, user, user_pic)
+        show_photo(photo)
+    map.setCenter(photo.latitude, photo.longitude)
+    show_photo(photo)
 
-  show_photo = (url, name, user, user_pic) ->
-    photo = $("#selected_photo")
-    content = photo.find(".content")
+  show_photo = (photo) ->
+    photo_div = $("#selected_photo")
+    content = photo_div.find(".content")
     content.fadeOut 500, ->
-      photo.find("h2[rel='photo_title']").html(name)
-      photo.find("h3[rel='user']").text(user)
-      photo.find("img[rel='user_pic']").attr("src",user_pic)
-      photo.find("img[rel='image']").attr("src",url)
+      photo.find("h2[rel='photo_title']").html(photo.name)
+      photo.find("h3[rel='user']").text(photo.user)
+      photo.find("img[rel='user_pic']").attr("src",photo.user_pic)
+      photo.find("img[rel='image']").attr("src",photo.url)
       content.fadeIn(500)
