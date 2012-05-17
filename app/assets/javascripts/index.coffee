@@ -11,18 +11,23 @@ $(document).ready ->
     photos = data[0]
     process photo for photo in photos
 
-
   process = (photo) ->
     url = photo.images.standard_resolution.url
-    name = photo.caption
+    name = photo.caption.text
+    user = photo.caption.from.full_name
+    user_pic = photo.caption.from.profile_picture
     latitude = photo.location.latitude
     longitude = photo.location.longitude
     console.log('An event was triggered with message: ' + url);
     map.addMarker
       lat: latitude
       lng: longitude
-      infoWindow:
-        content: '<img src="' + url + '"/>'
       click: (e) ->
-        alert(name)
+        show_photo(url,name,user,user_pic)
     map.setCenter(latitude, longitude)
+
+    show_photo = (url, name, user, user_pic) ->
+      photo = $("#selected_photo")
+      photo.find("h2[rel='photo_title']").html(name)
+      photo.find("h3[rel='user']").html(user)
+      photo.find("img[rel='image']").attr(src,url)
