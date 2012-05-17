@@ -17,7 +17,7 @@ class HomeController < ApplicationController
     photos_data = clean_photos(photos)
 
     REDIS.zadd("instagram-photo-colection",0,photos_data)
-    Pusher['hipstermap'].trigger('photo:new', photos.to_json)
+    Pusher['hipstermap'].trigger('photo:new', photos_data.to_json)
     render :text => params["hub.challenge"], :status => 202
   end
 
