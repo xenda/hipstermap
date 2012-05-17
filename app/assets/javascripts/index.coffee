@@ -13,7 +13,7 @@ $(document).ready ->
 
   process = (photo) ->
     url = photo.images.standard_resolution.url
-    name = photo.caption.text
+    name = photo.caption.text if photo.caption
     user = photo.caption.from.full_name
     user_pic = photo.caption.from.profile_picture
     latitude = photo.location.latitude
