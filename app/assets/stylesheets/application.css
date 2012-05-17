@@ -11,3 +11,9 @@
  *= require_self
  *= require_tree .
 */
+
+
+#map{
+  height:300px;
+  background:#6699cc;
+}
