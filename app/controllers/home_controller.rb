@@ -3,9 +3,7 @@ class HomeController < ApplicationController
   def index
     data = REDIS.zrevrange("instagram-photo-colection", 0, 10)
     logger.info data.size
-    logger.info data[0]
-    logger.info data[1]
-    @photos = data.map {|a| JSON.parse(a) }
+    @photos = data.map {|a| JSON.parse(a) }.flatten
   end
 
   def callback

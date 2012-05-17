@@ -23,9 +23,14 @@ $(document).ready ->
   show_photo = (photo) ->
     photo_div = $("#selected_photo")
     content = photo_div.find(".content")
-    content.fadeOut 500, ->
+    content.fadeOut 200, ->
       photo_div.find("h2[rel='photo_title']").html(photo.name)
       photo_div.find("h3[rel='user']").text(photo.user)
       photo_div.find("img[rel='user_pic']").attr("src",photo.user_pic)
       photo_div.find("img[rel='image']").attr("src",photo.url)
-      content.fadeIn(500)
+      content.fadeIn(300)
+
+  if App.photos.length > 0
+    process photo for photo in App.photos
+
+
